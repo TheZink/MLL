@@ -1,6 +1,6 @@
 import time
 import pandas as pd
-from surprise import Reader, Dataset
+from surprise import Reader, Dataset, KNNWithZScore
 from surprise import KNNBasic
 
 # Load the datasets
@@ -87,7 +87,7 @@ sim_options = {
 }
 
 final_trainset = data.build_full_trainset()
-final_model = KNNBasic(sim_options=sim_options)
+final_model = KNNWithZScore(sim_options=sim_options, k=5)
 final_model.fit(final_trainset)
 
 print("\n" + "=" * 60)
